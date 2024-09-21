@@ -1,0 +1,63 @@
+﻿@model List<HotCatCafe.Model.Entities.OrderDetail>
+
+@{
+    ViewData["Title"] = "Masa Ürünleri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal? totalPayment = 0;
+    var tableId = ViewBag.TableId;
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Birim Fiyat</th>
+                    <th>Adet</th>
+                    <th>Ara Toplam</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var subTotal = item.Quantity * item.UnitPrice;
+                    totalPayment += subTotal;
+                    <tr id="productRow-@item.ProductId">
+                        <td>@item.ProductName</td>
+                        <td>@item.UnitPrice.ToString("C")</td>
+                        <td>
+                            <input value="@item.Quantity" type="number" min="0" itemid="newQuantity" class="form-control" name="newQuantity-@item.ProductId" onchange="updateQuantity(@tableId, @item.ProductId, this.value)" />
+                        </td>
+                        <td>@subTotal.ToString("C")</td>
+                        <td>
+                            <button class="btn btn-danger btn-xs" asp-route-tableId="@tableId" asp-route-productId="@item.ProductId" onclick="deleteItem(@tableId, @item.ProductId)">Kaldır</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Toplam Tutar</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">
+                        @totalPayment
+                        <small class="text-muted fw-light">/₺</small>
+                    </h1>
+                    <a asp-action="Index" asp-controller="Category" asp-route-tableId="@tableId" class="w-100 btn btn-lg btn-outline-primary">Alışverişe Devam Et</a>
+                    <a asp-action="GetPaymentTest" asp-controller="Table" asp-route-totalPayment="@totalPayment" asp-route-tableId="@tableId" class="w-100 btn btn-lg btn-outline-success">Ödeme Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/crudTableItemTest.js" asp-append-version="true"></script>
+}

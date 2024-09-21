@@ -1,0 +1,51 @@
+﻿@model List<OrderDetailViewModel>
+@{
+    ViewData["Title"] = "Sipariş Detayları";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/dataTable.css" asp-append-version="true" />
+</head>
+<form id="dateRangeForm" asp-action="GetOrderDetailByDate" asp-area="Administrator" asp-controller="Report" method="post" class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="startDate" class="mr-2">Başlangıç Tarihi: </label>
+        <input type="date" class="form-control" id="startDate" name="startDate" required />
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="endDate" class="mr-2">Bitiş Tarihi: </label>
+        <input type="date" class="form-control" id="endDate" name="endDate" required />
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Filtrele</button>
+</form>
+
+<hr />
+<h6>*Ürünleri filtrelemek için kolon isimlerine basın.*</h6>
+<table class="table table-striped" id="orderDetailTable">
+    <thead>
+        <tr>
+            <th>Sipariş ID </th>
+            <th onclick="sortTable(0)">Ürün Adı <span class="sort-indicator"></span></th>
+            <th onclick="sortTable(1)">Miktar <span class="sort-indicator"></span></th>
+            <th onclick="sortTable(2)">Birim Fiyat <span class="sort-indicator"></span></th>
+            <th onclick="sortTable(3)">Sipariş Tarihi <span class="sort-indicator"></span></th>
+            <th onclick="sortTable(4)">Toplam Fiyat <span class="sort-indicator"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@String.Format("{0:C}", item.UnitPrice)</td>
+                <td>@item.CreatedTime.ToShortDateString()</td>                
+                <td>@String.Format("{0:C}", item.Quantity * item.UnitPrice)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script src="~/js/dataTable.js" asp-append-version="true"></script>
+}

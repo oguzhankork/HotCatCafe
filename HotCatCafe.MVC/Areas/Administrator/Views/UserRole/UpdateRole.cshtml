@@ -1,0 +1,30 @@
+﻿@model AppUserViewModel
+@{
+    ViewData["Title"] = "Kullanıcı Rol Güncelleme";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/userUpdate.css" />
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input type="text" asp-for="UserName" class="form-control" readonly />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" type="text" asp-for="Email" readonly />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserRole"></label>
+        <select class="form-control" asp-for="UserRole" asp-items="@ViewBag.UserRoleListItem" >
+            <option value="@Model.UserRole">Select Role</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Güncelle</button>
+</form>

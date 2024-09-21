@@ -1,0 +1,40 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<form method="post">
+    <input type="hidden" asp-for="ProductId" />
+    <div>
+        <label asp-for="ProductName"></label>
+        <input type="text" asp-for="ProductName" />
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+    </div>
+    <div>
+        <select class="form-control" asp-items="@ViewBag.SubCategoryListItem" asp-for="SubCategoryId">
+            <option selected="" enabled>Select Category</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="UnitPrice" class="control-label font-weight-bold" style="font-size: 1.2rem;"></label>
+        <input class="form-control" type="text" asp-for="UnitPrice" />
+        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="UnitInStock" class="control-label font-weight-bold" style="font-size: 1.2rem;"></label>
+        <input class="form-control" type="text" asp-for="UnitInStock" />
+        <span asp-validation-for="UnitInStock" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="MinStockLevel" class="control-label font-weight-bold" style="font-size: 1.2rem;"></label>
+        <input class="form-control" type="text" asp-for="MinStockLevel" />
+        <span asp-validation-for="MinStockLevel" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="IsActive"></label>
+        <input type="checkbox" asp-for="IsActive" name="IsActive" checked />
+    </div>
+    <button type="submit">Güncelle</button>
+</form>
+

@@ -1,0 +1,32 @@
+﻿@model List<TableViewModel>
+@{
+    ViewData["Title"] = "Masalar";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotCatDemo.MVC</title>
+    <link rel="stylesheet" href="~/css/table_View.css" asp-append-version="true" />
+</head>
+<section class="mt-2">
+    <div class="container">
+        <div class="card col-md-9 mx-auto">
+            <div class="card-header">
+                <h3 class="card-text">Masalar</h3>
+            </div>
+            <div class="card-body">
+                <div class="nav-item">
+                    @foreach (var item in Model)
+                    {
+                        <div class="card">
+                            <a asp-action="Index" asp-controller="Category" asp-route-tableId="@item.TableId" class="btn position-relative mx-auto">
+                                @item.TableName
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,65 @@
+﻿@model List<SubCategoryViewModel>
+
+@{
+    ViewData["Title"] = "Alt Kategoriler";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+    // Bu örnekte, CategoryId'yi ViewBag üzerinden alıyoruz. Gerçek veriniz için düzenlemeler yapabilirsiniz.
+    var categoryId = Model.FirstOrDefault()?.CategoryId;
+}
+<div class="mb-3 text-right">
+    <a asp-action="Create" asp-area="Administrator" asp-controller="SubCategory" asp-route-categoryid="@categoryId" class="btn btn-success">Yeni Alt Kategori Ekle</a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-center align-middle">Alt Kategori ID</th>
+            <th class="text-center align-middle">Alt Kategori Adı</th>
+            <th class="text-center align-middle">Kategori ID</th>
+            <th class="text-center align-middle">Aktiflik </th>
+            <th class="text-center align-middle">Durum</th>
+            <th class="text-center align-middle">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center align-middle">@item.Id</td>
+                <td class="text-center align-middle">@item.SubCategoryName</td>
+                <td class="text-center align-middle">@item.CategoryId</td>
+                <td class="text-center align-middle">
+                    @if (item.IsActive)
+                    {
+                        <span class="badge badge-success">Aktif</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-secondary">Pasif</span>
+                    }
+                </td>
+                <td class="text-center align-middle">
+                    @switch (item.Status)
+                    {
+                        case HotCatCafe.Model.Enums.DataStatus.DELETED:
+                            <span class="badge badge-danger">Silinmiş</span>
+                            break;
+                        case HotCatCafe.Model.Enums.DataStatus.UPDATED:
+                            <span class="badge badge-warning">Güncellenmiş</span>
+                            break;
+                        case HotCatCafe.Model.Enums.DataStatus.INSERTED:
+                            <span class="badge badge-info">Eklendi</span>
+                            break;
+                    }
+                </td>
+                <td class="text-center align-middle">
+                    <div class="btn-group" role="group" aria-label="Actions">
+                        <a asp-action="GetDetailProduct" asp-area="Administrator" asp-controller="Product" asp-route-id="@item.Id" class="btn btn-success btn-sm">Detay</a>
+                        <a asp-action="Update" asp-area="Administrator" asp-controller="SubCategory" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Güncelle</a>
+                        <a asp-action="CreateProduct" asp-area="Administrator" asp-controller="Product" class="btn btn-primary btn-sm">Ürün Ekle</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

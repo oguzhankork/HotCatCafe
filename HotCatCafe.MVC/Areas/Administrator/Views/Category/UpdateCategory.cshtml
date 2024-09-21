@@ -1,0 +1,22 @@
+﻿@model CategoryViewModel
+@{
+    ViewData["Title"] = "Güncelle";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<form method="post">
+    <div>
+        <label asp-for="CategoryName"></label>
+        <input type="text" asp-for="CategoryName" />
+    </div>
+    <div>
+        <label asp-for="Description"></label>
+        <input type="text" asp-for="Description" />
+    </div>
+    <div>
+        <label asp-for="IsActive"></label>
+        <input type="checkbox" asp-for="IsActive" name="IsActive" checked />
+    </div>
+    <button type="submit">Güncelle</button>
+</form>
+

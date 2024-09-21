@@ -1,0 +1,24 @@
+﻿@model SubCategoryViewModel
+@{
+    ViewData["Title"] = "Güncelle";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<form method="post">
+    <div>
+        <label asp-for="SubCategoryName"></label>
+        <input type="text" asp-for="SubCategoryName"/>
+    </div>
+    <div>
+        <label asp-for="CategoryId"></label>
+        <select class="form-control" asp-items="@ViewBag.CategoryListItem" asp-for="CategoryId">
+            <option selected="" disabled>Select Category</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="IsActive"></label>
+        <input type="checkbox" asp-for="IsActive" name="IsActive" checked />
+    </div>
+    <button type="submit">Güncelle</button>
+</form>
+

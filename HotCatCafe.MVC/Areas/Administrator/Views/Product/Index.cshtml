@@ -1,0 +1,60 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "Tüm Ürünler";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+    
+}
+
+<table class="table table-hover">
+    <tr>
+        <th>Ürün Görsel</th>
+        <th>Ürün ID</th>
+        <th>Ürün Ad</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.ImagePath != null)
+                {
+                    <img src="~/images//products/@item.ImagePath/" width="72" height="72" />
+                }
+                else
+                {
+                    <img src="https://senospetrol.com/wp-content/uploads/2023/08/placeholder-1.png" width="72" height="72" />
+                }
+            </td>
+            <td>@item.ProductId</td>
+            <td>@item.ProductName</td>
+            <td>@item.UnitPrice</td>
+            <td style="background-color:@((item.MinStockLevel.HasValue && item.UnitInStock < item.MinStockLevel) ? "red"
+    : (item.MinStockLevel.HasValue && item.UnitInStock < item.MinStockLevel + 10) ? "orange" : "green");
+    color:white; text-align:center;">
+                @item.UnitInStock
+            </td>
+            <td>
+                @switch (item.Status)
+                {
+                    case HotCatCafe.Model.Enums.DataStatus.DELETED:
+                        <span>Silinmiş</span>
+                        break;
+                    case HotCatCafe.Model.Enums.DataStatus.UPDATED:
+                        <span>Güncellenmiş</span>
+                        break;
+                    case HotCatCafe.Model.Enums.DataStatus.INSERTED:
+                        <span>Eklendi</span>
+                        break;
+                }
+            </td>
+            <td>
+                <a asp-action="UpdateProduct" asp-area="Administrator" asp-controller="Product" asp-route-id="@item.ProductId" class="btn btn-primary">Update</a>
+                <a asp-action="SendMailStock" asp-area="Administrator" asp-controller="Product" class="btn btn-success">Ürün İste</a>
+
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,64 @@
+﻿/* Genel Form Ayarları */
+form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px; /* Formu belirli bir genişlikte sınırlandır */
+    margin: 0 auto; /* Ortalamak için margin ayarı */
+}
+
+/* Form Grupları */
+.form-group {
+    margin-bottom: 20px; /* Form alanları arasında boşluk */
+}
+
+    .form-group label {
+        font-weight: bold;
+        color: #333333;
+        display: block; /* Label elemanlarının üstte görünmesi için block yap */
+        margin-bottom: 5px; /* Label ile input arasına boşluk */
+    }
+
+    .form-group input,
+    .form-group select {
+        background-color: #ffffff;
+        color: #333333;
+        width: 100%; /* Genişliği tam yap */
+        padding: 10px; /* İç boşluk ekle */
+        border-radius: 4px; /* Hafif yuvarlatılmış köşeler */
+        border: 1px solid #ccc; /* Kenarlık ekle */
+        font-size: 0.9rem;
+    }
+        .form-group select option {
+            font-size: 0.9rem; /* Yazı boyutunu küçült */
+        }
+        .form-group input[readonly],
+        .form-group select[disabled] {
+            background-color: #e9ecef; /* Pasif alanlar için daha açık bir renk */
+        }
+
+/* Buton Stili */
+.btn-primary {
+    background-color: #f27a1a;
+    border-color: #f27a1a;
+    color: #ffffff;
+    padding: 10px 20px; /* Butonun iç boşluğunu artır */
+    font-size: 1rem; /* Yazı boyutunu artır */
+    border-radius: 4px; /* Hafif yuvarlatılmış köşeler */
+    display: block; /* Butonu tam satır yap */
+    width: 100%; /* Genişliği tam yap */
+    margin-top: 10px; /* Üstüne boşluk ekle */
+    text-align: center; /* Yazıyı ortala */
+}
+
+    .btn-primary:hover {
+        background-color: #e56800;
+        border-color: #e56800;
+    }
+
+/* Hata mesajları */
+.text-danger {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px; /* Hata mesajı ile input arasında boşluk */
+}

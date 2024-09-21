@@ -1,0 +1,36 @@
+﻿@model List<OrderDetailViewModel>
+ 
+@{
+    ViewData["Title"] = "Sipariş Detayları";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Ürün Adı</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.OrderId</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@item.Quantity</td>
+                            </tr>
+                        }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

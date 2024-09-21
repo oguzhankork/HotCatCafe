@@ -1,0 +1,40 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/productCard.css">
+</head>
+
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="ProductName"></label>
+        <input class="form-control" type="text" asp-for="ProductName" />
+    </div>
+    <div>
+        <label asp-for="UnitPrice"></label>
+        <input class="form-control" type="number" asp-for="UnitPrice" />
+    </div>
+    <div>
+        <label asp-for="UnitInStock"></label>
+        <input class="form-control" type="number" asp-for="UnitInStock" />
+    </div>
+    <div>
+        <label asp-for="MinStockLevel"></label>
+        <input class="form-control" type="number" asp-for="MinStockLevel" />
+    </div>
+    <div>     
+        <label asp-for="SubCategoryId"></label>
+        <select class="form-control" asp-items="@ViewBag.SubCategoryListItem" asp-for="SubCategoryId">
+            <option selected=""value="" disabled>Select Category</option>
+        </select>
+        <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input class="form-control" type="file" name="productImage" />
+    </div>
+
+    <button class="btn btn-success" type="submit">Oluştur</button>
+</form>

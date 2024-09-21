@@ -1,0 +1,40 @@
+﻿@model List<AppUserViewModel>
+@{
+    ViewData["Title"] = "Uygulama Kullanıcıları";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/userIndex.css" />
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı ID</th>
+                            <th>Kullanıcı Adı</th>
+                            <th>Email</th>
+                            <th>Kullanıcı Rol</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.UserName</td>
+                                <td>@item.Email</td>
+                                <td>@item.UserRole</td>
+                                <td>
+                                    <a class="btn btn-add-role" asp-action="AddToRole" asp-controller="UserRole" asp-area="Administrator" asp-route-Id="@item.Id">Rol Ekle</a>
+                                    <a class="btn btn-update-role" asp-action="UpdateRole" asp-controller="UserRole" asp-area="Administrator" asp-route-Id="@item.Id">Rol Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

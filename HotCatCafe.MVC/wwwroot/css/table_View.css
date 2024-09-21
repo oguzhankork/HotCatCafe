@@ -1,0 +1,71 @@
+﻿<style >
+.card-header {
+    padding: 15px;
+    text-align: center; /* Başlığı ortalar */
+    margin-bottom: 20px; /* Başlık ve içerik arasında boşluk bırakır */
+    background-color: #6D6D6D; /* Canlı turuncu arka plan */
+    color: #FFFFFF; /* Beyaz metin */
+}
+
+.card-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Kartlar arasında boşluk */
+}
+
+.nav-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Kartlar arasında boşluk */
+}
+
+.card-text {
+    text-align: center;
+}
+
+.nav-item .card {
+    width: 130px; /* Genişlik küçültüldü */
+    height: 130px; /* Yükseklik küçültüldü */
+    background-color: #333333; /* Kart arka plan rengi (siyah) */
+    color: white; /* Yazı rengi beyaz */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item .btn {
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem; /* Yazı boyutunu küçülttük */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Yazının ortalanmasını sağlar */
+    box-sizing: border-box; /* İç boşluk ve kenarlık dahil genişliği hesaplar */
+    text-decoration: none; /* Link altını kaldırır */
+    color: white; /* Yazı rengi beyaz */
+    background-color: transparent; /* Buton arka plan rengi şeffaf, kart rengi baskın */
+    border: none; /* Kenarlık kaldırıldı */
+}
+
+    .nav-item .btn:hover {
+        background-color: #FF6F00; /* Üzerine gelindiğinde turuncu renk değişimi */
+    }
+
+.card-body {
+    padding: 20px 0; /* İç boşluk ayarlandı */
+}
+
+@media (max-width: 768px) {
+    .nav-item .card {
+        width: 100%;
+        height: auto;
+    }
+}
+
+</style >

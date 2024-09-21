@@ -1,0 +1,18 @@
+﻿@model SubCategoryViewModel
+@{
+    ViewData["Title"] = "Kategori Oluştur";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<form method="post" asp-action="Create" asp-controller="SubCategory">
+    <div>
+        <select class="form-control" asp-items="@ViewBag.CategoryListItem" asp-for="CategoryId">
+            <option selected="" disabled>Select Category</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="SubCategoryName"></label>
+        <input type="text" asp-for="SubCategoryName" />
+    </div>
+    <button type="submit">Oluştur</button>
+</form>

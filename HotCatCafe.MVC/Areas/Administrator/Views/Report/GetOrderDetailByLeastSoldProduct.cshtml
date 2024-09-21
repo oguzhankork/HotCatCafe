@@ -1,0 +1,30 @@
+﻿@model List<OrderDetailViewModel>
+@{
+    ViewData["Title"] = "Az Satanlar";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+    int count = 1;
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sıralama</th>
+            <th>Ürün Adı </th>
+            <th>Birim Fiyat</th>
+            <th>Adet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@item.ProductName</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.Quantity</td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+

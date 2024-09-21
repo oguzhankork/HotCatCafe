@@ -1,0 +1,61 @@
+﻿@model CreditCardViewModel
+@{
+    ViewData["Title"] = "Hesap Ödeme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotCatDemo.MVC</title>
+    <link rel="stylesheet" href="~/css/cardPayment.css" asp-append-version="true" />
+</head>
+
+<div class="mx-auto" style="font-size: 14px; max-width: 400px; margin: auto;">
+    <form method="post">
+        <div class="card">
+            <div class="card-header">
+                <h2 style="font-size: 20px; text-align: center;">Kredi Kartı Bilgileri</h2>
+            </div>
+            <div class="card-body">
+                <div class="cc-types" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <img class="cc-types__img cc-types__img--amex" style="width: 60px; height: 40px;">
+                    <img class="cc-types__img cc-types__img--visa" style="width: 60px; height: 40px;">
+                    <img class="cc-types__img cc-types__img--mastercard" style="width: 60px; height: 40px;">
+                    <img class="cc-types__img cc-types__img--disc" style="width: 60px; height: 40px;">
+                    <img class="cc-types__img cc-types__img--genric" style="width: 60px; height: 40px;">
+                </div>
+                <div style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                    <label asp-for="FirstName" style="font-size: 14px; margin-bottom: 5px;">İsim</label>
+                    <input type="text" class="form-control" asp-for="FirstName" style="font-size: 14px; height: 30px; width: 100%;" />
+                </div>
+
+                <div style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                    <label asp-for="LastName" style="font-size: 14px; margin-bottom: 5px;">Soyisim</label>
+                    <input type="text" class="form-control" asp-for="LastName" style="font-size: 14px; height: 30px; width: 100%;" />
+                </div>
+                <div style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                    <label asp-for="CardNumber" style="font-size: 14px; margin-bottom: 5px;">Kart Numarası</label>
+                    <input type="text" maxlength="19" class="cc-number-input" asp-for="CardNumber" style="font-size: 14px; height: 30px; width: 100%;">
+                </div>
+
+                <div style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                    <label asp-for="EndTime" style="font-size: 14px; margin-bottom: 5px;">Son Kullanma Tarihi</label>
+                    <input type="text" maxlength="5" class="cc-expiry-input" asp-for="EndTime" style="font-size: 14px; height: 30px; width: 100%;">
+                </div>
+                <div style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                    <label asp-for="CvvNo" style="font-size: 14px; margin-bottom: 5px;">CVV</label>
+                    <input type="text" maxlength="3" class="cc-cvc-input" asp-for="CvvNo" style="font-size: 14px; height: 30px; width: 100%;" />
+                </div>
+                <input type="hidden" asp-for="SubTotal" />
+            </div>
+        </div>
+        <div style="margin:10px 0; text-align:center;">
+            <strong>Karttan Çekilecek Tutar :@Model.SubTotal ₺</strong>
+        </div>
+        <button type="submit" class="btn btn-primary" style="font-size: 14px; height: 35px; width: 100%;">Öde</button>
+    </form>
+</div>
+@section Scripts {
+    <script src="~/js/cardPayment.js" asp-append-version="true"></script>
+}
+

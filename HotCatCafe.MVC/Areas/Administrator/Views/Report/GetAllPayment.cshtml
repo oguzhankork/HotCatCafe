@@ -1,0 +1,53 @@
+﻿@model List<PaymentViewModel>
+@{
+    ViewData["Title"] = "Gelir Tablosu";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+    int count = 1;
+    decimal totalPaymentSum = 0;
+    string startDateValue = ViewBag.StartDate != null ? ViewBag.StartDate.ToString("yyyy-MM-dd") : "";
+    string endDateValue = ViewBag.EndDate != null ? ViewBag.EndDate.ToString("yyyy-MM-dd") : "";
+}
+<form asp-action="GetAllPayment" method="post" class="form-inline">
+    <div class="form-group">
+        <label for="startTime">Başlangıç Tarihi: </label>
+        <input type="date" class="form-control" id="startDate" name="startDate" value="@startDateValue" required />
+    </div>
+    <div class="form-group">
+        <label for="endTime" style="margin-left: 10px;">Bitiş Tarihi: </label>
+        <input type="date" class="form-control" id="endDate" name="endDate" required value="@endDateValue" />
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Filtrele</button>
+    <a asp-action="GetAllPayment" asp-controller="Report" asp-area="Administrator" class="btn btn-success position-relative">
+        Geri
+    </a>
+
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sıralama</th>
+            <th>Sipariş ID</th>
+            <th>Ödeme</th>
+            <th>Ödeme Tipi</th>
+            <th>Tarih / Saat</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@item.OrderId</td>
+                <td>@item.TotalPayment</td>
+                <td>@item.PaymentType</td>
+                <td>@item.CreatedDate</td>
+            </tr>
+            totalPaymentSum += item.TotalPayment;
+            count++;
+        }
+    </tbody>
+</table>
+<div class="total-payment-container" style="text-align:right; margin-top: 20px; padding: 10px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+    <h4 style="color: #333;"><strong>Toplam Ödeme:</strong> @totalPaymentSum</h4>
+</div>
+

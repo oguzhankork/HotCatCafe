@@ -1,0 +1,89 @@
+﻿/* Genel Font ve Renk Ayarları */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f27a1a; /* Turuncu renk tonu */
+    color: #ffffff;
+}
+
+    .navbar .nav-link {
+        color: #ffffff;
+    }
+
+        .navbar .nav-link:hover {
+            color: #ffffff; /* Hover sırasında renk değişimi */
+        }
+
+/* Sidebar */
+.main-sidebar {
+    background-color: #333333; /* Daha koyu, modern bir gri */
+}
+
+.nav-sidebar .nav-item > .nav-link {
+    color: #ffffff;
+}
+
+    .nav-sidebar .nav-item > .nav-link.active {
+        background-color: #f27a1a; /* Turuncu renk tonu */
+        color: #ffffff;
+    }
+
+/* Content Area */
+.content-wrapper {
+    background-color: #f5f5f5; /* Hafif gri arka plan */
+}
+
+.content-header {
+    background-color: #f5f5f5;
+    padding: 15px;
+}
+
+.m-0 {
+    background-color: #f5f5f5;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #f27a1a; /* Turuncu renk tonu */
+    border-color: #f27a1a;
+    color: #ffffff;
+}
+
+    .btn-primary:hover {
+        background-color: #e56800; /* Koyu turuncu rengi */
+        border-color: #e56800;
+    }
+
+/* Footer */
+.footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Sidebar Link */
+.nav-sidebar .nav-link {
+    color: #ffffff;
+}
+
+/* Trendyol Tarzında Yazı Tipi */
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Genel Ayarlar */
+.content-wrapper {
+    min-height: calc(100vh - 56px); /* Sayfanın boyunu tam ekran yap */
+}
+
+/* Navbar Yazı Stili */
+.navbar-nav .nav-item .navbar-text {
+    font-size: 1.5rem !important; /* Yazı boyutunu büyütür */
+    color: #f5e6cc !important; /* Açık pastel renk tonu */
+    font-weight: bold !important; /* Yazıyı kalınlaştırır */
+}

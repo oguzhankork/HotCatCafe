@@ -1,0 +1,106 @@
+﻿/* Genel Font ve Renk Ayarları */
+body {
+    font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #F8F8F8; /* Hafif gri arka plan */
+}
+
+/* Navbar için turuncu arka plan rengi ve beyaz yazı rengi */
+.navbar {
+    background-color: #FF7100; /* Turuncu arka plan */
+    border-bottom: 1px solid #E0E0E0; /* İnce gri sınır */
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: #FFFFFF; /* Beyaz yazı rengi */
+        font-weight: bold; /* Kalın yazı */
+    }
+
+        /* Navbar'daki linkler hover olduğunda daha koyu turuncu vurgusu */
+        .navbar .nav-link:hover {
+            color: #FFD54F; /* Açık altın sarısı hover rengi */
+        }
+
+        /* Navbar'daki brand hover olduğunda daha koyu turuncu vurgusu */
+        .navbar .navbar-brand:hover {
+            color: #FFD54F; /* Açık altın sarısı hover rengi */
+        }
+
+/* Main content’in düzgün hizalanması */
+main {
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #FFFFFF; /* İçerik arka planı beyaz */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05); /* Hafif gölge efekti */
+    padding: 20px;
+    border-radius: 8px; /* Hafif köşe yuvarlama */
+}
+
+/* Alert mesajları */
+.alert {
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #FF7100; /* Turuncu arka plan */
+    color: #FFFFFF; /* Beyaz yazı */
+}
+
+/* Footer için gri arka plan rengi */
+.footer {
+    background-color: #333333; /* Koyu gri */
+    color: #FFFFFF; /* Beyaz yazı */
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    margin-top: auto; /* Footer'ı sayfanın altına iter */
+}
+
+/* Diğer CSS kodları */
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #FF7100; /* Turuncu link */
+}
+
+    a:hover {
+        color: #E64A00; /* Koyu turuncu hover */
+    }
+
+.btn-primary {
+    color: #FFFFFF;
+    background-color: #FF7100; /* Turuncu buton */
+    border-color: #FF7100;
+}
+
+    .btn-primary:hover {
+        background-color: #E64A00; /* Hover turuncu */
+    }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #FFFFFF;
+    background-color: #FF7100; /* Turuncu aktif tab */
+}
+
+/* Sayfa düzeni için Flexbox yapısı */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ana içerik bölümü */
+main {
+    flex: 1; /* İçerik kısmı tüm boşluğu doldurur */
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+}
