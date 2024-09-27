@@ -4,7 +4,9 @@
     Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
     
 }
-
+<head>
+    <link rel="stylesheet" href="~/css/photoSetting.css" asp-append-version="true" />
+</head>
 <table class="table table-hover">
     <tr>
         <th>Ürün Görsel</th>
@@ -21,7 +23,8 @@
             <td>
                 @if (item.ImagePath != null)
                 {
-                    <img src="~/images//products/@item.ImagePath/" width="72" height="72" />
+                    <img src="@Url.Content("~/images/productImages/" + item.ImagePath)" class="product-image" alt="Product Image" />
+
                 }
                 else
                 {

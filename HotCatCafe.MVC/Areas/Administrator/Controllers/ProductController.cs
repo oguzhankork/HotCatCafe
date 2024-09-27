@@ -41,6 +41,7 @@ namespace HotCatCafe.MVC.Areas.Administrator.Controllers
             }).ToList();
             return View(product);
         }
+        [HttpGet]
         public IActionResult CreateProduct()
         {
             ViewBag.SubCategoryListItem = _subCategoryService.GetAllSubCategories().Select(x => new SubCategoryViewModel
@@ -81,14 +82,14 @@ namespace HotCatCafe.MVC.Areas.Administrator.Controllers
                     if (imageResult == "0")
                     {
                         TempData["Error"] = "Görsel izin verilen formatta değil";
-                        return View();
+                        return RedirectToAction("Index","Product");
                     }
                     else
                     {
                         var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images\\productImages", imageResult);
                         using (var stream = new FileStream(imagePath, FileMode.Create))
                         {
-                            ImagePath.CopyToAsync(stream);
+                           await ImagePath.CopyToAsync(stream);
                         }
 
                         Product product = new Product

@@ -57,31 +57,4 @@
     <script src="~/adminTemplate/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="~/adminTemplate/dist/js/adminlte.min.js?v=3.2.0"></script>
     <script src="~/adminTemplate/dist/js/demo.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#orderTable").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#orderTable_wrapper .col-md-6:eq(0)');
-
-        })
-    </script>
-
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
 }

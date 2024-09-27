@@ -1,0 +1,33 @@
+﻿body {
+}
+.card {
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    width: 100%; /* Görselin kartın genişliğini kaplamasını sağlıyor */
+    height: 200px; /* Yükseklik ayarı yapılıyor */
+    object-fit: contain; /* Fotoğrafı kırpmadan sığdırmak için kullanılır */
+    border: 1px solid #ddd;
+    padding: 4px;
+    background-color: #f9f9f9;
+    display: block;
+    object-position: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}

@@ -8,8 +8,7 @@ namespace HotCatCafe.Model.Interfaces
         public T MasterId { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedComputerName { get; set; }
-        public string CreatedIpAdress { get; set; }
-      
+        public string CreatedIpAdress { get; set; }      
         public DateTime UpdatedDate { get; set; }
         public string UpdatedComputerName { get; set; }
         public string UpdatedIpAdress { get; set; }

@@ -1,0 +1,11 @@
+﻿body {
+}
+.product-image {
+    width: 72px;
+    height: 72px;
+    object-fit: contain; /* Görüntü alanın içine sığar ve kırpılmadan gösterilir */
+    border: 1px solid #ddd; /* Görsel için ince bir çerçeve */
+    padding: 4px;
+    background-color: #f9f9f9; /* Görselin arka planı */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+}

@@ -1,0 +1,8 @@
+{
+  "EmailSettings": {
+    "username": "HotCatCafe@outlook.com",
+    "password": "Oguz2023.",
+    "host": "smtp-mail.outlook.com",
+    "port": "587"
+  }
+}

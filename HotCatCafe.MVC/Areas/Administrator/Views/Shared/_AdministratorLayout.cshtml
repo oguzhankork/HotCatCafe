@@ -73,16 +73,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-action="Index" asp-area="Administrator" asp-controller="UserRole" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Kullanıcılar</p>
-                        </a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Index" asp-area="Administrator" asp-controller="UserRole" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Kullanıcılar</p>
+                            </a>
+                        }                        
                     </li>
                     <li class="nav-item">
-                        <a asp-action="Index" asp-area="Administrator" asp-controller="Category" class="nav-link">
-                            <i class="nav-icon fas fa-list"></i>
-                            <p>Kategoriler</p>
-                        </a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Index" asp-area="Administrator" asp-controller="Category" class="nav-link">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>Kategoriler</p>
+                            </a>
+                        }                       
                     </li>
                     <li class="nav-item">
                         <a asp-action="Index" asp-area="Administrator" asp-controller="Product" class="nav-link">
@@ -91,39 +97,42 @@
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-box"></i>
-                            <p>
-                                Raporlama
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a asp-action="Index" asp-area="Administrator" asp-controller="Report" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Genel Rapor</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-action="GetOrderDetailByBestSeller" asp-area="Administrator" asp-controller="Report" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Çok Satanlar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-action="GetOrderDetailByLeastSoldProduct" asp-area="Administrator" asp-controller="Report" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Az Satanlar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-action="GetAllPayment" asp-area="Administrator" asp-controller="Report" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Gelen Ödemeler</p>
-                                </a>
-                            </li>
-                        </ul>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                    Raporlama
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-area="Administrator" asp-controller="Report" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Genel Rapor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="GetOrderDetailByBestSeller" asp-area="Administrator" asp-controller="Report" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Çok Satanlar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="GetOrderDetailByLeastSoldProduct" asp-area="Administrator" asp-controller="Report" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Az Satanlar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="GetAllPayment" asp-area="Administrator" asp-controller="Report" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gelen Ödemeler</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        }                        
                     </li>
                 </ul>
             </nav>

@@ -15,15 +15,15 @@ namespace HotCatCafe.Common.EmailHelpers
         {
             var emailSettings = _configuration.GetSection("EmailSettings");
             MailMessage sender = new MailMessage();
-            sender.From = new MailAddress(emailSettings["username"], emailSettings["displayName"]);
+            sender.From = new MailAddress(emailSettings["userName"], emailSettings["displayName"]);
             sender.Subject = subject;
             sender.Body = body;
             sender.To.Add(email);
 
 
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = new NetworkCredential(emailSettings["username"], emailSettings["password"]);
-            smtpClient.Host = emailSettings["host"];
+            smtpClient.Credentials = new NetworkCredential(emailSettings["userName"], emailSettings["password"]);
+            smtpClient.Host =emailSettings["host"];
             smtpClient.Port = int.Parse(emailSettings["port"]);
             smtpClient.EnableSsl = true;
 

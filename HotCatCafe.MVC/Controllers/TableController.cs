@@ -60,6 +60,17 @@ namespace HotCatCafe.MVC.Controllers
         }
         public async Task<IActionResult> AddToTableTest(int id, int tableId)
         {
+            var table = _tableService.GetTableById(tableId);
+            if (table == null)
+            {
+                TempData["Error"] = "Masa Bulunamadı";
+                return RedirectToAction("Index", "Home");
+            }
+            if (!table.IsActive) //Masaya Aynı Anda İki Garsonun Sipariş Girmesini Engelliyor.
+            {
+                TempData["Error"] = "Masada İşlem Yapılıyor";
+                return RedirectToAction("Index", "Home");
+            }
             if (_userManager.GetUserId(HttpContext.User) == null)
             {
                 TempData["Error"] = "Lütfen Giriş Yapın";
@@ -73,67 +84,37 @@ namespace HotCatCafe.MVC.Controllers
                 return RedirectToAction("Index", new { tableId });
             }
 
-            var table = _tableService.GetTableById(tableId);
-            if (table == null)
-            {
-                TempData["Error"] = "Masa Bulunamadı";
-                return RedirectToAction("Index", "Home");
-            }
-
             AppUser user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 TempData["Error"] = "Kullanıcı Bulunamadı";
                 return RedirectToAction("Index", "Home");
             }
-
             var tableSession = _tableSessionService.GetActiveTableSessionByTableId(tableId);
-            if (tableSession == null)
+            try
             {
-                Random rnd = new Random();
-                tableSession = new TableSession
+                table.IsActive = false;
+                await _tableService.UpdateTableAsync(table);
+                if (tableSession == null)
                 {
-                    Table = table,
-                    TableId = table.ID,
-                    SessionNumber = $"S-{rnd.Next(0, 100000)}",
-                    StartTime = DateTime.Now,
-                    IsActive = true,
-                    OrderDetails = new List<OrderDetail>()
-                };
-                Order order = new Order
-                {
-                    OrderNumber = $"O-{rnd.Next(0, 100000)}",
-                    User = user,
-                    Table = table,
-                    PaymentControl = false,
-                    TableSession = tableSession
-                };
-                OrderDetail orderDetail = new OrderDetail
-                {
-                    Product = product,
-                    ProductName = product.ProductName,
-                    ProductId = product.ID,
-                    UnitPrice = product.UnitPrice,
-                    Quantity = 1,
-                    TableSession = tableSession,
-                    Order = order
-                };
-
-                tableSession.OrderDetails.Add(orderDetail);
-                await _tableSessionService.CreateTableSessionAsync(tableSession);
-            }
-            else
-            {
-                var order = _orderService.GetOrderByTableSessionId(tableSession.ID);
-
-                var controlOrderDetail = order.OrderDetails.FirstOrDefault(x => x.ProductId == product.ID && x.OrderId == order.ID);
-
-                if (controlOrderDetail != null)
-                {
-                    controlOrderDetail.Quantity += 1;
-                }
-                else
-                {
+                    Random rnd = new Random();
+                    tableSession = new TableSession
+                    {
+                        Table = table,
+                        TableId = table.ID,
+                        SessionNumber = $"S-{rnd.Next(0, 10000)}",
+                        StartTime = DateTime.Now,
+                        IsActive = true,
+                        OrderDetails = new List<OrderDetail>()
+                    };
+                    Order order = new Order
+                    {
+                        OrderNumber = $"O-{rnd.Next(0, 10000)}",
+                        User = user,
+                        Table = table,
+                        PaymentControl = false,
+                        TableSession = tableSession
+                    };
                     OrderDetail orderDetail = new OrderDetail
                     {
                         Product = product,
@@ -142,15 +123,51 @@ namespace HotCatCafe.MVC.Controllers
                         UnitPrice = product.UnitPrice,
                         Quantity = 1,
                         TableSession = tableSession,
-                        Order = order,
-                        OrderId = order.ID
+                        Order = order
                     };
-                    order.OrderDetails.Add(orderDetail);
+                    tableSession.OrderDetails.Add(orderDetail);
+                    await _tableSessionService.CreateTableSessionAsync(tableSession);
                 }
-                await _tableSessionService.UpdateTableSessionAsync(tableSession);
+                else
+                {
+                    table.IsActive = false;
+                    await _tableService.UpdateTableAsync(table);
+                    var order = _orderService.GetOrderByTableSessionId(tableSession.ID);
+                    var controlOrderDetail = order.OrderDetails.FirstOrDefault(x => x.ProductId == product.ID && x.OrderId == order.ID);
+
+                    if (controlOrderDetail != null)
+                    {
+                        controlOrderDetail.Quantity += 1;
+                    }
+                    else
+                    {
+                        OrderDetail orderDetail = new OrderDetail
+                        {
+                            Product = product,
+                            ProductName = product.ProductName,
+                            ProductId = product.ID,
+                            UnitPrice = product.UnitPrice,
+                            Quantity = 1,
+                            TableSession = tableSession,
+                            Order = order,
+                            OrderId = order.ID
+                        };
+                        order.OrderDetails.Add(orderDetail);
+                    }
+                    await _tableSessionService.UpdateTableSessionAsync(tableSession);
+                }
+                product.UnitInStock -= 1;
+                await _productService.UpdateProductAsync(product);
             }
-            product.UnitInStock -= 1;
-            await _productService.UpdateProductAsync(product);
+            catch (Exception ex)
+            { 
+                table.IsActive = true;
+                await _tableService.UpdateTableAsync(table);
+                TempData["Error"] = $"Bir hata oluştu: {ex.Message}";
+                return RedirectToAction("Index", "Home");
+            }
+            table.IsActive = true;
+            await _tableService.UpdateTableAsync(table);
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]

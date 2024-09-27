@@ -24,7 +24,10 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Administrator" asp-controller="Home" asp-action="Index">Administrator</a>
+                            @if (User.IsInRole("Admin")||User.IsInRole("Purchase"))
+                            {
+                                <a class="nav-link" asp-area="Administrator" asp-controller="Home" asp-action="Index">Administrator</a>
+                            }                            
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">

@@ -19,7 +19,7 @@ namespace HotCatCafe.Common.ImageHelpers
 
             var extension = fileArray[fileArray.Length - 1]; 
 
-            if (extension == "png" || extension == "jpg" || extension == "bmp" || extension == "gif" || extension == "jpeg")
+            if (extension == "png" || extension == "jpg" || extension == "bmp" || extension == "gif" || extension == "jpeg"|| extension == "jfif" || extension == "webp")
             {
                 newImageName = uniqueName + "." + extension;
                 return newImageName;

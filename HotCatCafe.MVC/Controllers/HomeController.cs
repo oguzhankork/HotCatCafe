@@ -32,7 +32,7 @@ namespace HotCatCafe.MVC.Controllers
             {
                 TableId = x.ID,
                 TableNumber = x.TableNumber,
-                TableName = x.TableName
+                TableName = x.TableName                
             }).ToList();
 
             ViewBag.TableSelect = tableSelect;
