@@ -3,7 +3,7 @@ using HotCatCafe.Model.Interfaces;
 
 namespace HotCatCafe.Model.Base
 {
-    public class BaseEntity : IEntity<Guid>
+    public abstract class BaseEntity : IEntity<Guid>
     {
         public BaseEntity()
         {
