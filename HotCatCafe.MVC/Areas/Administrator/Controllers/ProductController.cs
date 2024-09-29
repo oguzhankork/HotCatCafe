@@ -4,13 +4,14 @@ using HotCatCafe.BLL.ViewModels.SubCategoryViewModels;
 using HotCatCafe.Common.ImageHelpers;
 using HotCatCafe.Common.ProductHelper;
 using HotCatCafe.Model.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HotCatCafe.MVC.Areas.Administrator.Controllers
 {
-    [Area("Administrator")]
+    [Area("Administrator")]    
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -28,7 +29,7 @@ namespace HotCatCafe.MVC.Areas.Administrator.Controllers
         }
         public IActionResult Index()
         {
-            var product = _productService.GetAllProduct().OrderByDescending(x => x.UnitInStock < x.MinStockLevel).Select(x => new ProductViewModel
+            var product = _productService.GetAllProduct().OrderBy(x => x.UnitInStock).Select(x => new ProductViewModel
             {
                 ProductId = x.ID,
                 ProductName = x.ProductName,

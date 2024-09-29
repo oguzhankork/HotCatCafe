@@ -1,10 +1,12 @@
 ﻿using HotCatCafe.BLL.Repositories.Abstracts;
 using HotCatCafe.BLL.ViewModels.OrderViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotCatCafe.MVC.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
         private readonly IOrderService _orderService;
