@@ -10,8 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Configuration.GetConnectionString("OguzConnection");
 
 // Dependency Injection Services
+
 //AddDbContext
-//builder.Services.AddHotCatCafeDb();
 builder.Services.AddHotCatCafeDb(builder.Configuration);
 
 //Emaill Senden Initialize
@@ -26,12 +26,7 @@ builder.Services.AddRepositoryService();
 //User Manager Services
 builder.Services.AddIdentityService();
 
-//session
-builder.Services.AddSession(x =>
-{
-    x.Cookie.Name = "HotCatCafe_Table_Session";
-    x.IdleTimeout = TimeSpan.FromMinutes(5);
-});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
@@ -56,9 +51,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-//session
-app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

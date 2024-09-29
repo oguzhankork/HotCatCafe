@@ -11,9 +11,9 @@ namespace HotCatCafe.DAL.Configuration
             builder.Ignore(x => x.ID);
             builder.HasKey(x => new
             {
-                x.ProductId,
+                x.ProductId,    
                 x.OrderId
-            });
+            });                 // Burada Id yoksayılıp bir OrderDetail in hem bir ürüne hem de bir Order a bağlı olması için yapıldı.
             builder.HasOne(x => x.Order).WithMany(x => x.OrderDetails).HasForeignKey(x => x.OrderId);
             builder.Property(x => x.UnitPrice).HasPrecision(18, 2);
         }
